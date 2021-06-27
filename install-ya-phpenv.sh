@@ -27,7 +27,7 @@ if sed --version 2>&1 | grep -q GNU; then
     sep=''
 fi
 
-rbenv_files=`grep -lR -iF -e 'ruby' -e 'rbenv' "$PHPENV_ROOT" | grep -v '/\.git/'`
+rbenv_files=`grep -lR -iF -e 'ruby' -e 'rbenv' "$PHPENV_ROOT" | grep -v -e '/\.git' -e '\.md$'`
 for rbenv_file in $rbenv_files; do
     [ -L "$rbenv_file" ] && continue
 
