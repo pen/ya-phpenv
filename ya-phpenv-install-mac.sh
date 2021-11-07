@@ -45,7 +45,7 @@ if ! type brew >/dev/null 2>&1; then
     exit
 fi
 
-libs='bzip2 libiconv tidy-html5 libzip zlib'
+libs='bzip2 libiconv openssl@1.1 tidy-html5 libzip zlib'
 if [ $rpv -lt 70400 ]; then
     libs="$libs bison@2.7 libedit re2c"
 fi
@@ -65,6 +65,7 @@ if [ -n "$missing" ]; then
     exit
 fi
 
+export PKG_CONFIG_PATH="$(brew --prefix openssl@1.1)/lib/pkgconfig"
 export PHP_BUILD_EXTRA_MAKE_ARGUMENTS="-j`sysctl -n hw.logicalcpu`"
 export PHP_BUILD_CONFIGURE_OPTS="\
     --with-pear \
